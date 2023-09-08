@@ -23,10 +23,7 @@ namespace BetterDoorAccess.Handlers
                     {
                         if (ev.Player.CurrentItem.Type == pair.Key)
                         {
-                            if (!pair.Value)
-                            {
-                                ev.IsAllowed = false;
-                            }
+                            ev.IsAllowed = pair.Value;
                         }
                     }
                 }
