@@ -18,4 +18,7 @@ better_door_access:
     keycards:
       KeycardGuard: true
       KeycardMTFCaptain: false
+  - type: 096
+    keycards:
+      KeycardScientist: false
 ```
