@@ -29,5 +29,43 @@ namespace BetterDoorAccess.Handlers
                 }
             }
         }
+        public void OnInteractingElevator(InteractingElevatorEventArgs ev)
+        {
+            foreach (ElevatorProperties props in BetterDoorAccess.Instance.Config.Elevators)
+            {
+                if (ev.Elevator.AssignedGroup == props.type)
+                {
+                    if (ev.Player.CurrentItem == null)
+                    {
+                        ev.IsAllowed = false;
+                        if (props.method == ElevatorProperties.output.Broadcast)
+                        {
+                            ev.Player.Broadcast(5, props.message, shouldClearPrevious: true);
+                        }
+                        else
+                        {
+                            ev.Player.ShowHint(props.message, 5);
+                        }
+                        return;
+                    }
+                    if (props.keycards.Contains(ev.Player.CurrentItem.Type))
+                    {
+                        ev.IsAllowed = true;
+                    }
+                    else
+                    {
+                        ev.IsAllowed = false;
+                        if (props.method == ElevatorProperties.output.Broadcast)
+                        {
+                            ev.Player.Broadcast(5, props.message, shouldClearPrevious: true);
+                        }
+                        else
+                        {
+                            ev.Player.ShowHint(props.message, 5);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

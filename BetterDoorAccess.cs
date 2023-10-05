@@ -16,11 +16,13 @@ namespace BetterDoorAccess
         {
             playerHandler = new Handlers.PlayerHandler();
             Player.InteractingDoor += playerHandler.OnInteractingDoor;
+            Player.InteractingElevator += playerHandler.OnInteractingElevator;
             base.OnEnabled();
         }
         public override void OnDisabled()
         {
             Player.InteractingDoor -= playerHandler.OnInteractingDoor;
+            Player.InteractingElevator -= playerHandler.OnInteractingElevator;
             playerHandler = null;
             base.OnDisabled();
         }

@@ -31,5 +31,20 @@ namespace BetterDoorAccess
                 }
             }
         };
+        [Description("List of elevators for changing access (List<DoorProperties>)")]
+        public List<ElevatorProperties> Elevators { get; set; } = new List<ElevatorProperties>()
+        {
+            new ElevatorProperties()
+            {
+                type = Interactables.Interobjects.ElevatorManager.ElevatorGroup.Nuke,
+                keycards = new List<ItemType>()
+                {
+                    ItemType.KeycardO5,
+                    ItemType.KeycardFacilityManager
+                },
+                message = "Access denied.",
+                method = ElevatorProperties.output.Broadcast
+            }
+        };
     }
 }
